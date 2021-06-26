@@ -1,1 +1,1 @@
-(load "/mnt/go/data/git/s/cdemacs/init")
+(load "/data/git/s/cdemacs/init")
