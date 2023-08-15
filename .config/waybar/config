@@ -44,26 +44,29 @@
     },
     
     "battery": {
-        "bat": "BAT0",
+        "interval": 30,
         "states": {
-              "full": 99,
-              "good": 98,
-              "normal": 98,
-              "warning": 20,
-              "critical": 20
+            "warning": 30,
+            "critical": 15
         },
-
-        "format": "{icon} {capacity}%",
-        "format-good": "{icon} {capacity}%", 
-        "format-full": "  {capacity}%",
-        "format-icons": ["", "", "", "", ""],
-        "interval": 30
-    },
+        // Connected to AC
+        "format": "{capacity}%", // Icon: bolt
+        // Not connected to AC
+        "format-discharging": "{icon}  {capacity}%",
+        "format-icons": [
+            "", // Icon: battery-full
+            "", // Icon: battery-three-quarters
+            "", // Icon: battery-half
+            "", // Icon: battery-quarter
+            ""  // Icon: battery-empty
+        ],
+        "tooltip": true
+   },
 
     "network": {
         "format-wifi": "  {essid}({signalStrength}%) ",
         "format-disconnected": "睊 ",
-        "interval": 60
+        "interval": 30
     },
 
     "temperature": {
