@@ -1,0 +1,9 @@
+export XMODIFIERS=@im=exwm-xim
+export GTK_IM_MODULE=xim
+export CLUTTER_IM_MODULE=xim
+
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
+#emacs --daemon -f exwm-enable
+#exec emacsclient -a "" -c
+exec emacs

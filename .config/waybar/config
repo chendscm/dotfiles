@@ -31,8 +31,8 @@
     },
 
     "custom/clock": {
-        "exec": "date '+%Y-%m-%d %H:%M:%S'",
-        "interval": 1
+        "exec": "date '+%Y-%m-%d %H:%M'",
+        "interval": 60
     },
     
     "cpu": {
@@ -50,7 +50,7 @@
             "critical": 15
         },
         // Connected to AC
-        "format": "{capacity}%", // Icon: bolt
+        "format": " {capacity}%", // Icon: bolt
         // Not connected to AC
         "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
@@ -71,7 +71,7 @@
 
     "temperature": {
         "thermal-zone": 0,
-	"format": " {temperatureC}°C ",
+	"format": " {temperatureC}°C",
 	"interval": 30
     },
 
