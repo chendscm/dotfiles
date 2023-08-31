@@ -54,8 +54,15 @@
 	                  (specification->package "alacritty")
 			  ;; net
 	                  (specification->package "iwd")
+
+			  ;; python
+			  (specification->package "python")
+			  
 			  ;; apps
 ;			  (sepcification->package "ungoogled-chromium")
+
+			  ;; fonts
+			  (specification->package "font-wqy-microhei")
 			  )
                     %base-packages))
 
