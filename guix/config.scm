@@ -1,6 +1,3 @@
-;; This is an operating system configuration generated
-;; by the graphical installer.
-;;
 ;; Once installation is complete, you can learn and modify
 ;; this file to tweak the system configuration, and pass it
 ;; to the 'guix system reconfigure' command to effect your
@@ -10,27 +7,50 @@
 ;; Indicate which modules to import to access the variables
 ;; used in this configuration.
 (use-modules (gnu)
+ 	     (gnu packages)
+	     (gnu packages chromium)
 	     (gnu services)
 	     (gnu services base)
 	     (gnu services networking)
+	     (gnu system)
+	     (gnu system locale)
+	     (guix packages)
 	     (nongnu packages linux)
 	     (nongnu system linux-initrd)
 	     )
-(use-service-modules cups desktop networking ssh xorg)
-
-(define substitute-urls
-  (list "https://mirror.sjtu.edu.cn/guix/"
-	"https://ci.guix.gnu.org"))
+(use-package-modules docker fonts)
+(use-service-modules cups desktop docker networking ssh xorg)
 
 (operating-system
  (kernel linux)
  (initrd microcode-initrd)
  (firmware (list linux-firmware))
- 
-  (locale "en_HK.utf8")
-  (timezone "Asia/Shanghai")
-  (keyboard-layout (keyboard-layout "us"))
-  (host-name "gpd")
+
+ (timezone "Asia/Shanghai")
+ (keyboard-layout (keyboard-layout "us"))
+ (host-name "gpd")
+
+ (locale "en_US.utf8")
+ (locale-definitions
+  (cons* (locale-definition
+	  (name "zh_CN.UTF-8")
+	  (source "zh_CN"))
+	 (locale-definition
+	  (name "zh_CN.GB2312")
+	  (source "zh_CN"))
+	 (locale-definition
+	  (name "zh_CN.GBK")
+	  (source "zh_CN"))
+	 (locale-definition
+	  (name "zh_CN.GB18030")
+	  (source "zh_CN"))
+	 (locale-definition
+	  (name "zh_CN.BIG5")
+	  (source "zh_TW"))
+	 (locale-definition
+	  (name "zh_TW.UTF-8")
+	  (source "zh_TW"))
+	 %default-locale-definitions))
 
   ;; The list of user accounts ('root' is implicit).
   (users (cons* (user-account
@@ -51,17 +71,31 @@
                           (specification->package "nss-certs")
                           (specification->package "docker")
                           (specification->package "git")
-	                  (specification->package "alacritty")
+
+			  ;; basic
+			  (specification->package "cmake")
+			  (specification->package "glibc-locales")
+			  (specification->package "wmctrl")
+			  ;(specification->package "libtool-bin")
+			  (specification->package "libvterm")
+			  (specification->package "xrandr")
+
 			  ;; net
 	                  (specification->package "iwd")
 
 			  ;; python
 			  (specification->package "python")
+
+			  ;; Virtual
+			  (specification->package "qemu")
 			  
 			  ;; apps
-;			  (sepcification->package "ungoogled-chromium")
+                          (specification->package "ungoogled-chromium")
+	                  (specification->package "alacritty")
 
 			  ;; fonts
+			  (specification->package "fontconfig")
+			  (specification->package "font-wqy-zenhei")
 			  (specification->package "font-wqy-microhei")
 			  )
                     %base-packages))
@@ -75,21 +109,29 @@
                  ;; record as a second argument to 'service' below.
                  (service openssh-service-type)
                  (service cups-service-type)
-;		 (service docker-service-type)
+		 (service docker-service-type)
                  (set-xorg-configuration
                   (xorg-configuration (keyboard-layout keyboard-layout))))
 
            ;; This is the default list of services we
            ;; are appending to.
            %desktop-services)
+
+;   (modify-services %desktop-services
+;		    (guix-service-type
+;		     config => (guix-configuration
+;				(inherit config)
+;				(substitute-urls '("https://mirror.sjtu.edu.cn/guix/"
+;						   "https://ci.guix.gnu.org")))))
    )
+
   (bootloader (bootloader-configuration
                 (bootloader grub-efi-bootloader)
                 (targets (list "/boot/efi"))
                 (keyboard-layout keyboard-layout)))
   (swap-devices (list (swap-space
                         (target (uuid
-                                 "3681f1b0-8265-4a17-b065-69d4181fdfa1")))))
+                                 "464b6986-cb0e-4e77-a0e5-6bacc5270e04")))))
 
   ;; The list of file systems that get "mounted".  The unique
   ;; file system identifiers there ("UUIDs") can be obtained
@@ -97,11 +139,11 @@
   (file-systems (cons* (file-system
                          (mount-point "/")
                          (device (uuid
-                                  "b0491151-d18c-4104-8f5b-5d53e8386c81"
+                                  "fdf4930d-bfcd-44d2-a3aa-473c04e08507"
                                   'btrfs))
                          (type "btrfs"))
                        (file-system
                          (mount-point "/boot/efi")
-                         (device (uuid "C56E-953B"
+                         (device (uuid "CABE-D7C2"
                                        'fat32))
                          (type "vfat")) %base-file-systems)))
