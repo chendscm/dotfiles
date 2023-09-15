@@ -9,6 +9,7 @@
 (use-modules (gnu)
  	     (gnu packages)
 	     (gnu packages chromium)
+	     (gnu packages compression)
 	     (gnu services)
 	     (gnu services base)
 	     (gnu services networking)
@@ -16,6 +17,7 @@
 	     (gnu system locale)
 	     (guix packages)
 	     (nongnu packages linux)
+	     (nongnu packages compression)
 	     (nongnu system linux-initrd)
 	     )
 (use-package-modules docker fonts)
@@ -72,12 +74,20 @@
                           (specification->package "docker")
                           (specification->package "git")
 
+			  ;; amdgpu
+			  (specification->package "mesa")
+
 			  ;; basic
 			  (specification->package "cmake")
 			  (specification->package "glibc-locales")
 			  (specification->package "wmctrl")
 			  ;(specification->package "libtool-bin")
-			  (specification->package "libvterm")
+
+			  ;; audio
+			  (specification->package "alsa-utils")
+
+			  ;; desktop
+			  (specification->package "sway")
 			  (specification->package "xrandr")
 
 			  ;; net
@@ -85,13 +95,48 @@
 
 			  ;; python
 			  (specification->package "python")
+			  ;; scheme
+			  (specification->package "chez-scheme")
 
 			  ;; Virtual
 			  (specification->package "qemu")
 			  
-			  ;; apps
-                          (specification->package "ungoogled-chromium")
-	                  (specification->package "alacritty")
+			  ;; browser
+                          (specification->package "surf")
+			  (specification->package "firefox")
+			  ;; terminal
+	                  (specification->package "st")
+			  (specification->package "alacritty")
+			  (specification->package "libvterm")
+			  ;; desktop
+			  (specification->package "sway")
+			  (specification->package "swaylock")
+			  (specification->package "swayidle")
+			  (specification->package "swaybg")
+			  (specification->package "waybar")
+			  (specification->package "dmenu")
+			  (specification->package "polkit")
+			  ;;
+			  (specification->package "dwl")
+			  
+			  ;;misc
+	                  (specification->package "sdcv")
+
+			  ;; compression
+			  (specification->package "zip")
+  			  (specification->package "unzip")
+ 			  (specification->package "pigz")
+  			  (specification->package "unrar")
+			  ;; bluetooth
+  			  (specification->package "bluez")
+
+			  ;; fcitx
+			  (specification->package "fcitx5")
+  			  (specification->package "fcitx5-gtk")
+ 			  (specification->package "fcitx5-qt")
+  			  (specification->package "fcitx5-configtool")
+  			  (specification->package "fcitx5-rime")
+  			  (specification->package "librime")
 
 			  ;; fonts
 			  (specification->package "fontconfig")
@@ -110,6 +155,7 @@
                  (service openssh-service-type)
                  (service cups-service-type)
 		 (service docker-service-type)
+		 (service bluetooth-service-type)
                  (set-xorg-configuration
                   (xorg-configuration (keyboard-layout keyboard-layout))))
 

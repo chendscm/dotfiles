@@ -1,0 +1,98 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 30,
+
+    "modules-left": ["sway/workspaces", "custom/scratch", "sway/mode", "sway/window"],
+    "modules-center": [],
+    "modules-right": ["network", "cpu", "memory", "temperature", "backlight", "pulseaudio", "battery", "custom/clock", "tray"],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "disable-markup": true,
+        "format": "{index}" 
+    },
+    "sway/window": {
+    	"format": "{}",
+    	"max-length": 150
+    },
+
+    "custom/scratch": {
+        "interval": 3,
+        "exec": "swaymsg -t get_tree | jq 'recurse(.nodes[]) | first(select(.name==\"__i3_scratch\")) | .floating_nodes | length | select(. >= 0)'",
+  	"format": "^{}",
+   	"on-click": "swaymsg 'scratchpad show'",
+   	"on-click-right": "swaymsg 'move scratchpad'"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 15
+    },
+
+    "custom/clock": {
+        "exec": "date '+%Y-%m-%d %H:%M'",
+        "interval": 60
+    },
+    
+    "cpu": {
+        "format": " {usage}% "
+    },
+
+    "memory": {
+        "format": " {}% "
+    },
+    
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        // Connected to AC
+        "format": " {capacity}%", // Icon: bolt
+        // Not connected to AC
+        "format-discharging": "{icon}  {capacity}%",
+        "format-icons": [
+            "", // Icon: battery-full
+            "", // Icon: battery-three-quarters
+            "", // Icon: battery-half
+            "", // Icon: battery-quarter
+            ""  // Icon: battery-empty
+        ],
+        "tooltip": true
+   },
+
+    "network": {
+        "format-wifi": "  {essid}({signalStrength}%) ",
+        "format-disconnected": "睊 ",
+        "interval": 30
+    },
+
+    "temperature": {
+        "thermal-zone": 0,
+	"format": " {temperatureC}°C",
+	"interval": 30
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+    	"format": "{icon} {percent}%",
+    	"format-icons": ["","","",""],
+    	"interval": 60
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%  ",
+        "format-bluetooth": "  {volume}%  ",
+        "format-muted":"婢  Mute  ",
+        "interval": 60,
+
+        "format-icons": {
+        "default": [""]
+        },
+            
+       "on-click": "blueman-manager"    
+    }
+
+}
