@@ -1,3 +1,7 @@
+(list (channel
+       (inherit (car %default-channels))
+       (url "https://mirror.sjtu.edu.cn/git/guix.git")))
+
 (cons* (channel
 	(name 'nonguix)
 	(url "https://gitlab.com/nonguix/nonguix")
