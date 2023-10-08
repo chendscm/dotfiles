@@ -8,7 +8,6 @@
 ;; used in this configuration.
 (use-modules (gnu)
  	     (gnu packages)
-	     (gnu packages chromium)
 	     (gnu packages compression)
 	     (gnu services)
 	     (gnu services base)
@@ -81,15 +80,18 @@
 	  ;; basic tools
 	  "docker" "git"
           ;; fonts
+	  "font-gnu-unifont"
 	  "fontconfig" "font-wqy-zenhei" "font-wqy-microhei"
 	  ;; desktop
 	  "sway" "swaylock" "swayidle" "swaybg"
 	  "waybar" "dmenu" "polkit"
-	  ;; fcitx
+	  ;; input
 	  "fcitx5" "fcitx5-gtk" "fcitx5-qt" "fcitx5-configtool"
 	  "fcitx5-rime" "librime"
+	  "ibus" "ibus-rime" "dconf"
 	  ;; emacs
-	  "emacs" "emacs-exwm" "emacs-desktop-environment"
+	  "emacs"
+	  ;; "emacs-exwm" "emacs-desktop-environment" "emacs-vterm"
 	  ;; python
 	  "python"
 	  ;; scheme
