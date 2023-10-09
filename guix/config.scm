@@ -100,7 +100,8 @@
 	  ;; Virtual
 	  "qemu"
 	  ;; browser
-	  "surf" "firefox"
+	  ;; "surf"
+	  "firefox"
 	  ;; terminal
 	  "st" "alacritty" "libvterm"
 	  ;; compression
@@ -108,8 +109,7 @@
 	  ;; misc apps
 	  "sdcv"
 	  ;; laptop
-	  "tlp"
-	  ))
+	  "tlp"))
    %base-packages))
 
  (services

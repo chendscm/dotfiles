@@ -11,7 +11,7 @@ install:
 	-smp 4 \
 	-m 8G \
 	-machine usb=on -device usb-tablet \
-	-drive file=/home/chend/data/qemu/win10/win10.qcow2,format=qcow2
+	-drive file=/home/chend/git/dotfiles/qemu-vm/win10/win10.qcow2,format=qcow2
 
 run:
 	qemu-system-x86_64 \
@@ -20,7 +20,8 @@ run:
 	-m 8G \
 	-vga qxl \
 	-machine usb=on -device usb-tablet \
-	/home/chend/data/qemu/win10/win10.qcow2
+	-nic user,hostfwd=tcp::60022-:22 \
+	/home/chend/git/dotfiles/qemu-vm/win10/win10.qcow2
 #	-audio wav,model=sb161
 
 .PHONY: create install run
