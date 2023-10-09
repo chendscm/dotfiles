@@ -59,7 +59,7 @@
                 (comment "Chend")
                 (group "users")
                 (home-directory "/home/chend")
-                (supplementary-groups '("wheel" "netdev" "audio" "video")))
+                (supplementary-groups '("wheel" "netdev" "audio" "video" "kvm")))
                %base-user-accounts))
 
  ;; Packages installed system-wide.  Users can also install packages
@@ -78,7 +78,8 @@
 	  ;; audio
 	  "alsa-utils"
 	  ;; basic tools
-	  "docker" "git"
+	  "make"
+	  "docker" "git" "aria2"
           ;; fonts
 	  "font-gnu-unifont"
 	  "fontconfig" "font-wqy-zenhei" "font-wqy-microhei"
@@ -93,7 +94,7 @@
 	  "emacs"
 	  ;; "emacs-exwm" "emacs-desktop-environment" "emacs-vterm"
 	  ;; python
-	  "python"
+	  "python" "python-ipython"
 	  ;; scheme
 	  "chez-scheme"
 	  ;; Virtual
