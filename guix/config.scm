@@ -100,8 +100,7 @@
 	  ;; Virtual
 	  "qemu"
 	  ;; browser
-	  ;; "surf"
-	  "firefox"
+	  "firefox" "tor"
 	  ;; terminal
 	  "st" "alacritty" "libvterm"
 	  ;; compression
