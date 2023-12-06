@@ -14,13 +14,14 @@
 	     (gnu services networking)
 	     (gnu system)
 	     (gnu system locale)
+	     (gnu system setuid)
 	     (guix packages)
 	     (nongnu packages linux)
 	     (nongnu packages compression)
 	     (nongnu system linux-initrd))
 (use-package-modules docker fonts)
 (use-service-modules cups desktop docker networking
-		     pm ssh xorg)
+		     pm ssh syncthing xorg)
 
 (operating-system
  (kernel linux)
@@ -78,27 +79,28 @@
 	  ;; audio
 	  "alsa-utils"
 	  ;; basic tools
-	  "make"
+	  "make" "curl"
 	  "docker" "git" "aria2"
+	  "brightnessctl" "playerctl"
           ;; fonts
 	  "font-gnu-unifont"
 	  "fontconfig" "font-wqy-zenhei" "font-wqy-microhei"
 	  ;; desktop
 	  "sway" "swaylock" "swayidle" "swaybg"
 	  "waybar" "dmenu" "polkit"
+	  "dconf-editor"
 	  ;; input
 	  "fcitx5" "fcitx5-gtk" "fcitx5-qt" "fcitx5-configtool"
 	  "fcitx5-rime" "librime"
 	  "ibus" "ibus-rime" "dconf"
 	  ;; emacs
 	  "emacs"
-	  ;; "emacs-exwm" "emacs-desktop-environment" "emacs-vterm"
 	  ;; python
 	  "python" "python-ipython"
 	  ;; scheme
 	  "chez-scheme"
 	  ;; Virtual
-	  "qemu"
+	  "qemu-minimal" "tigervnc-client"
 	  ;; browser
 	  "firefox" "tor"
 	  ;; terminal
@@ -123,6 +125,19 @@
 	     (sched-powersave-on-bat? #t)))
    (set-xorg-configuration
     (xorg-configuration (keyboard-layout keyboard-layout)))
+   (service gnome-desktop-service-type)
+   (service syncthing-service-type
+	    (syncthing-configuration (user "chend")))
+
+   (service screen-locker-service-type
+	    (screen-locker-configuration
+	     (name "swaylock")
+	     (program (file-append (specification->package "swaylock")
+				   "/bin/swaylock"))
+	     (allow-empty-password? #f)
+	     (using-pam? #t)
+	     (using-setuid? #f)))
+
    (modify-services %desktop-services
 		    (guix-service-type
 		     config => (guix-configuration

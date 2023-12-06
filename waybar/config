@@ -36,11 +36,11 @@
     },
     
     "cpu": {
-        "format": " {usage}% "
+        "format": " CPU:{usage}% "
     },
 
     "memory": {
-        "format": " {}% "
+        "format": " MEM:{}% "
     },
     
     "battery": {
@@ -50,42 +50,34 @@
             "critical": 15
         },
         // Connected to AC
-        "format": " {capacity}%", // Icon: bolt
+        "format": "AC: {capacity}%", // Icon: bolt
         // Not connected to AC
-        "format-discharging": "{icon}  {capacity}%",
-        "format-icons": [
-            "", // Icon: battery-full
-            "", // Icon: battery-three-quarters
-            "", // Icon: battery-half
-            "", // Icon: battery-quarter
-            ""  // Icon: battery-empty
-        ],
+        "format-discharging": "BAT: {capacity}%",
         "tooltip": true
    },
 
     "network": {
-        "format-wifi": "  {essid}({signalStrength}%) ",
+        "format-wifi": "WIFI: {essid}({signalStrength}%) ",
         "format-disconnected": "睊 ",
         "interval": 30
     },
 
     "temperature": {
         "thermal-zone": 0,
-	"format": " {temperatureC}°C",
+	"format": "TEMP: {temperatureC}°C",
 	"interval": 30
     },
 
     "backlight": {
         "device": "intel_backlight",
-    	"format": "{icon} {percent}%",
-    	"format-icons": ["","","",""],
+    	"format": "BACK: {percent}%",
     	"interval": 60
     },
 
     "pulseaudio": {
-        "format": "{icon} {volume}%  ",
-        "format-bluetooth": "  {volume}%  ",
-        "format-muted":"婢  Mute  ",
+        "format": "VOL: {volume}%  ",
+        "format-bluetooth": "VOL: {volume}%  ",
+        "format-muted":" Mute ",
         "interval": 60,
 
         "format-icons": {
