@@ -102,7 +102,7 @@
 	  ;; Virtual
 	  "qemu-minimal" "tigervnc-client"
 	  ;; browser
-	  "firefox" "tor"
+	  "firefox"
 	  ;; terminal
 	  "st" "alacritty" "libvterm"
 	  ;; compression
