@@ -34,7 +34,7 @@
                   (comment "Chend")
                   (group "users")
                   (home-directory "/home/chend")
-                  (supplementary-groups '("wheel" "netdev" "audio" "video")))
+                  (supplementary-groups '("wheel" "netdev" "audio" "video" "kvm")))
                 %base-user-accounts))
 
   ;; Packages installed system-wide.  Users can also install packages
@@ -45,32 +45,36 @@
     (map specification->package
 	 '(
 	   ;; system
+	   "intel-microcode" "xf86-video-intel"
+	   "xorg-server-xwayland"
+	   "make"
 	   "tlp"
-	   "brightnessctl" "playerctl"
+	   "bluez" "brightnessctl" "playerctl"
 	   ;; alsa
 	   "alsa-utils" "sof-firmware"
 	   ;; fonts
-	   "fontconfig" "font-gnu-unifont" "font-wqy-zenhei"
+	   "fontconfig" "font-gnu-unifont" "font-wqy-zenhei" "font-wqy-microhei"
 	   ;; fcitx
 	   "fcitx5" "fcitx5-gtk" "fcitx5-qt" "fcitx5-configtool"
-	   "fcitx5-rime" "librime"
+	   "fcitx5-rime" "librime" "fcitx5-chinese-addons"
+	   "dconf"
 	   ;; tools
 	   "git" "docker"
 	   "zip" "unzip"
-	   ;; i3
-	   "i3-wm" "i3status" "dmenu" "st"
 	   ;; edit
 	   "emacs" "vim"
 	   "emacs-exwm" "emacs-desktop-environment"
 	   ;; sway
 	   "sway" "swaylock" "swayidle" "swaybg" "waybar"
-	   "wmenu" "polkit" "dconf-editor"
+	   "wmenu" "polkit" "dconf-editor" "dmenu"
 	   ;; terminal
 	   "st" "alacritty"
 	   ;; develop
 	   "python" "python-ipython"
+	   ;; virtual
+	   "qemu"
 	   ;; browser
-	   "torbrowser" "google-chrome-stable"
+	   "torbrowser" "google-chrome-stable" "firefox"
 	   ))
     %base-packages))
 
