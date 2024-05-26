@@ -21,7 +21,7 @@
 (operating-system
   (kernel linux)
   (initrd microcode-initrd)
-  (firmware (list linux-firmware))
+  (firmware (list linux-firmware sof-firmware))
 
   (locale "en_HK.utf8")
   (timezone "Asia/Shanghai")
@@ -51,7 +51,7 @@
 	   "tlp"
 	   "bluez" "brightnessctl" "playerctl"
 	   ;; alsa
-	   "alsa-utils" "sof-firmware"
+	   "alsa-utils"
 	   ;; fonts
 	   "fontconfig" "font-gnu-unifont" "font-wqy-zenhei" "font-wqy-microhei"
 	   ;; fcitx
@@ -82,35 +82,41 @@
   ;; Below is the list of system services.  To search for available
   ;; services, run 'guix system search KEYWORD' in a terminal.
   (services
-   (append (list
+   (cons*
+    (service openssh-service-type)
+    (service cups-service-type)
+    (service bluetooth-service-type)
+    (service docker-service-type)
+    (service tlp-service-type
+	     (tlp-configuration
+	      (cpu-scaling-governor-on-ac (list "performance"))
+	      (sched-powersave-on-bat? #t)))
+    (service syncthing-service-type
+	     (syncthing-configuration (user "chend")))
+    (service screen-locker-service-type
+	     (screen-locker-configuration
+	      (name "swaylock")
+	      (program (file-append (specification->package "swaylock")
+				    "/bin/swaylock"))
+	      (allow-empty-password? #f)
+	      (using-pam? #t)
+	      (using-setuid? #f)))
 
-                 ;; To configure OpenSSH, pass an 'openssh-configuration'
-                 ;; record as a second argument to 'service' below.
-                 (service openssh-service-type)
-                 (service cups-service-type)
-		 (service bluetooth-service-type)
-		 (service docker-service-type)
-		 (service tlp-service-type
-			  (tlp-configuration
-			   (cpu-scaling-governor-on-ac (list "performance"))
-			   (sched-powersave-on-bat? #t)))
-		 (service syncthing-service-type
-			  (syncthing-configuration (user "chend")))
-		 (service screen-locker-service-type
-			  (screen-locker-configuration
-			   (name "swaylock")
-			   (program (file-append (specification->package "swaylock")
-						 "/bin/swaylock"))
-			   (allow-empty-password? #f)
-			   (using-pam? #t)
-			   (using-setuid? #f)))
-		 
-                 (set-xorg-configuration
-                  (xorg-configuration (keyboard-layout keyboard-layout))))
+    (set-xorg-configuration
+     (xorg-configuration (keyboard-layout keyboard-layout)))
 
-           ;; This is the default list of services we
-           ;; are appending to.
-           %desktop-services))
+    (modify-services %desktop-services
+		     (guix-service-type
+		      config => (guix-configuration
+				 (inherit config)
+				 (substitute-urls '("https://mirror.sjtu.edu.cn/guix/"
+						    "https://ci.guix.gnu.org"))))
+		     (gdm-service-type
+		      config => (gdm-configuration
+				 (inherit config)
+				 (wayland? #t))))
+    ))
+
   (bootloader (bootloader-configuration
                 (bootloader grub-efi-bootloader)
                 (targets (list "/boot/efi"))
@@ -122,11 +128,11 @@
   (file-systems (cons* (file-system
                          (mount-point "/")
                          (device (uuid
-                                  "e574add6-3ccc-4413-a362-f9e11554a49d"
+                                  "00d5ada1-bc13-4dfb-b816-d1ca2596766e"
                                   'ext4))
                          (type "ext4"))
                        (file-system
                          (mount-point "/boot/efi")
-                         (device (uuid "1B92-63E0"
+                         (device (uuid "CA72-68D6"
                                        'fat32))
                          (type "vfat")) %base-file-systems)))
