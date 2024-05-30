@@ -45,7 +45,8 @@
     (map specification->package
 	 '(
 	   ;; system
-	   "intel-microcode" "xf86-video-intel"
+	   "intel-microcode"
+	   "xf86-video-intel" "xf86-video-amdgpu"
 	   "xorg-server-xwayland"
 	   "make"
 	   "tlp"
