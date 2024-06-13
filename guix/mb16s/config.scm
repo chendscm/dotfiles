@@ -57,7 +57,7 @@
 	   "fontconfig" "font-gnu-unifont" "font-wqy-zenhei" "font-wqy-microhei"
 	   ;; fcitx
 	   "fcitx5" "fcitx5-gtk" "fcitx5-qt" "fcitx5-configtool"
-	   "fcitx5-rime" "librime" "fcitx5-chinese-addons"
+	   "fcitx5-rime" "librime"
 	   "dconf"
 	   ;; tools
 	   "git" "docker"
