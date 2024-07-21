@@ -80,7 +80,7 @@
 	   "qemu" "virt-manager" "virt-viewer" "dnsmasq" "bridge-utils"
 	   "tigervnc-client"
 	   ;; browser
-	   "torbrowser" "firefox"
+	   "torbrowser" "firefox" "w3m"
 	   ))
     %base-packages))
 
@@ -107,7 +107,6 @@
 	      (allow-empty-password? #f)
 	      (using-pam? #t)
 	      (using-setuid? #f)))
-    (service gnome-desktop-service-type)
 
     (set-xorg-configuration
      (xorg-configuration (keyboard-layout keyboard-layout)))
