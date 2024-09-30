@@ -93,6 +93,7 @@
     (service cups-service-type)
     (service bluetooth-service-type)
     (service docker-service-type)
+    (service containerd-service-type)
     (service tlp-service-type
 	     (tlp-configuration
 	      (cpu-scaling-governor-on-ac (list "performance"))
