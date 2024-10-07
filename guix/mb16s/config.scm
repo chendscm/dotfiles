@@ -78,6 +78,8 @@
 	   "qemu"
 	   ;; browser
 	   "torbrowser" "google-chrome-stable" "firefox" "ungoogled-chromium-wayland"
+	   ;; vnc
+	   "tigervnc-client" "freerdp" "xrdp" "remmina"
 	   ))
     %base-packages))
 
@@ -90,6 +92,7 @@
     (service cups-service-type)
     (service bluetooth-service-type)
     (service docker-service-type)
+    (service containerd-service-type)
     (service tlp-service-type
 	     (tlp-configuration
 	      (cpu-scaling-governor-on-ac (list "performance"))
