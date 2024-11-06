@@ -135,12 +135,10 @@
   ;; by running 'blkid' in a terminal.
   (file-systems (cons* (file-system
                          (mount-point "/")
-                         (device (uuid
-                                  "c9d39eda-c3fe-4e84-8178-01e8c9b019a8"
-                                  'ext4))
+                         (device (file-system-label "my-root"))
                          (type "ext4"))
                        (file-system
                          (mount-point "/boot/efi")
-                         (device (uuid "79EB-FB1A"
-                                       'fat32))
-                         (type "vfat")) %base-file-systems)))
+                         (device (uuid "00E0-3AC1" 'fat32))
+                         (type "vfat"))
+		       %base-file-systems)))
