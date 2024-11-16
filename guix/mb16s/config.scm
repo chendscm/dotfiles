@@ -47,9 +47,10 @@
 	   ;; system
 	   "intel-microcode"
 	   "xf86-video-intel" "xf86-video-amdgpu"
-	   "xorg-server-xwayland"
+	   "xorg-server-xwayland" "wayland-utils" "qtwayland"
 	   "make"
 	   "tlp"
+	   "xrandr"
 	   "bluez" "brightnessctl" "playerctl"
 	   ;; alsa
 	   "alsa-utils"
@@ -58,13 +59,13 @@
 	   ;; fcitx
 	   "fcitx5" "fcitx5-gtk" "fcitx5-qt" "fcitx5-configtool"
 	   "fcitx5-rime" "librime"
-	   "dconf"
+	   ;"dconf"
 	   ;; tools
 	   "git" "docker"
 	   "zip" "unzip"
 	   ;; edit
 	   "emacs" "vim"
-	   "emacs-exwm" "emacs-desktop-environment"
+	   ;;"emacs-exwm" "emacs-desktop-environment"
 	   ;; sway
 	   "sway" "swaylock" "swayidle" "swaybg" "waybar"
 	   "wmenu" "polkit" "dconf-editor" "dmenu"
@@ -93,6 +94,7 @@
     (service bluetooth-service-type)
     (service docker-service-type)
     (service containerd-service-type)
+    (service gnome-desktop-service-type)
     (service tlp-service-type
 	     (tlp-configuration
 	      (cpu-scaling-governor-on-ac (list "performance"))
@@ -113,10 +115,13 @@
 
     (modify-services %desktop-services
 		     (guix-service-type
-		      config => (guix-configuration
-				 (inherit config)
-				 (substitute-urls '("https://mirror.sjtu.edu.cn/guix/"
-						    "https://ci.guix.gnu.org"))))
+   		      config =>
+		      (guix-configuration
+		       (inherit config)
+		       (substitute-urls '("https://mirror.sjtu.edu.cn/guix/"
+					  "https://ci.guix.gnu.org"
+					  "https://bordeaux.guix.gnu.org"
+					  "https://substitutes.nonguix.org"))))
 		     (gdm-service-type
 		      config => (gdm-configuration
 				 (inherit config)
