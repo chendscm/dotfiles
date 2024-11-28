@@ -45,7 +45,8 @@
     (map specification->package
 	 '(
 	   ;; system
-	   "intel-microcode" "xf86-video-intel"
+	   "intel-microcode" 
+	   "mesa" "xorg-server"
 	   "xorg-server-xwayland"
 	   "make"
 	   "tlp"
@@ -63,7 +64,7 @@
 	   "zip" "unzip"
 	   ;; edit
 	   "emacs" "vim"
-	   "emacs-exwm" "emacs-desktop-environment"
+	   ;"emacs-exwm" "emacs-desktop-environment"
 	   ;; sway
 	   "sway" "swaylock" "swayidle" "swaybg" "waybar"
 	   "wmenu" "polkit" "dconf-editor" "dmenu"
@@ -87,6 +88,8 @@
     (service cups-service-type)
     (service bluetooth-service-type)
     (service docker-service-type)
+    (service containerd-service-type)
+    (service gnome-desktop-service-type)
     (service tlp-service-type
 	     (tlp-configuration
 	      (cpu-scaling-governor-on-ac (list "performance"))
@@ -110,7 +113,9 @@
 		      config => (guix-configuration
 				 (inherit config)
 				 (substitute-urls '("https://mirror.sjtu.edu.cn/guix/"
-						    "https://ci.guix.gnu.org"))))
+						    "https://ci.guix.gnu.org"
+                                                    "https://bordeaux.guix.gnu.org"
+                                                    "https://substitutes.nonguix.org"))))
 		     (gdm-service-type
 		      config => (gdm-configuration
 				 (inherit config)
@@ -127,12 +132,10 @@
   ;; by running 'blkid' in a terminal.
   (file-systems (cons* (file-system
                          (mount-point "/")
-                         (device (uuid
-                                  "00d5ada1-bc13-4dfb-b816-d1ca2596766e"
-                                  'ext4))
+                         (device (file-system-label "my-root"))
                          (type "ext4"))
                        (file-system
                          (mount-point "/boot/efi")
-                         (device (uuid "CA72-68D6"
+                         (device (uuid "EC30-F206"
                                        'fat32))
                          (type "vfat")) %base-file-systems)))
