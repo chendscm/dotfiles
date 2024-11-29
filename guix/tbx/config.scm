@@ -49,7 +49,6 @@
 	   "mesa" "xorg-server"
 	   "xorg-server-xwayland"
 	   "make"
-	   "tlp"
 	   "bluez" "brightnessctl" "playerctl"
 	   ;; alsa
 	   "alsa-utils"
@@ -93,6 +92,9 @@
     (service tlp-service-type
 	     (tlp-configuration
 	      (cpu-scaling-governor-on-ac (list "performance"))
+	      (cpu-scaling-governor-on-bat (list "power-saver"))
+	      (energy-perf-policy-on-ac "performance")
+	      (energy-perf-policy-on-bat "power-saver")
 	      (sched-powersave-on-bat? #t)))
     (service syncthing-service-type
 	     (syncthing-configuration (user "chend")))
