@@ -47,7 +47,7 @@
 	   ;; system
 	   "intel-microcode" 
 	   "mesa" "xorg-server"
-	   "xorg-server-xwayland"
+	   "xorg-server-xwayland" "wayland-utils" "qtwayland"
 	   "make"
 	   "bluez" "brightnessctl" "playerctl"
 	   ;; alsa
@@ -63,10 +63,10 @@
 	   "zip" "unzip"
 	   ;; edit
 	   "emacs" "vim"
-	   ;"emacs-exwm" "emacs-desktop-environment"
 	   ;; sway
 	   "sway" "swaylock" "swayidle" "swaybg" "waybar"
 	   "wmenu" "polkit" "dconf-editor" "dmenu"
+	   "rot8"
 	   ;; terminal
 	   "st" "alacritty"
 	   ;; develop
@@ -74,7 +74,7 @@
 	   ;; virtual
 	   "qemu"
 	   ;; browser
-	   "torbrowser" "google-chrome-stable" "firefox"
+	   "google-chrome-stable" "firefox"
 	   ))
     %base-packages))
 
@@ -83,6 +83,7 @@
   ;; services, run 'guix system search KEYWORD' in a terminal.
   (services
    (cons*
+    ;(service xorg-server-service-type)
     (service openssh-service-type)
     (service cups-service-type)
     (service bluetooth-service-type)
