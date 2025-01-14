@@ -78,7 +78,7 @@
 	   ;; virtual
 	   "qemu"
 	   ;; browser
-	   "torbrowser" "google-chrome-stable" "firefox" "ungoogled-chromium-wayland"
+	   "torbrowser" "google-chrome-stable" "firefox"
 	   ;; vnc
 	   "tigervnc-client" "freerdp" "xrdp" "remmina"
 	   ;; game
