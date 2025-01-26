@@ -74,7 +74,7 @@
 	   ;; virtual
 	   "qemu"
 	   ;; browser
-	   "google-chrome-stable" "firefox"
+	   "firefox"
 	   ))
     %base-packages))
 
@@ -127,7 +127,7 @@
 
   (bootloader (bootloader-configuration
                 (bootloader grub-efi-bootloader)
-                (targets (list "/boot/efi"))
+                (targets '("/boot/efi"))
                 (keyboard-layout keyboard-layout)))
 
   ;; The list of file systems that get "mounted".  The unique
@@ -139,6 +139,6 @@
                          (type "ext4"))
                        (file-system
                          (mount-point "/boot/efi")
-                         (device (uuid "EC30-F206"
-                                       'fat32))
+                         (device (uuid "C60E-FE7C"
+                                       'fat))
                          (type "vfat")) %base-file-systems)))
