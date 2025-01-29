@@ -90,13 +90,14 @@
     (service docker-service-type)
     (service containerd-service-type)
     (service gnome-desktop-service-type)
-    (service tlp-service-type
-	     (tlp-configuration
-	      (cpu-scaling-governor-on-ac (list "performance"))
-	      (cpu-scaling-governor-on-bat (list "power-saver"))
-	      (energy-perf-policy-on-ac "performance")
-	      (energy-perf-policy-on-bat "power-saver")
-	      (sched-powersave-on-bat? #t)))
+;    (service tlp-service-type
+;	     (tlp-configuration
+;	      (cpu-scaling-governor-on-ac (list "performance"))
+;	      (cpu-scaling-governor-on-bat (list "power-saver"))
+;	      (energy-perf-policy-on-ac "performance")
+;	      (energy-perf-policy-on-bat "power-saver")
+;	      (sched-powersave-on-bat? #t)))
+    (service tlp-service-type)
     (service syncthing-service-type
 	     (syncthing-configuration (user "chend")))
     (service screen-locker-service-type
