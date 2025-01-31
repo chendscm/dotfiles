@@ -46,7 +46,8 @@
 	 '(
 	   ;; system
 	   "intel-microcode" 
-	   "mesa" "xorg-server"
+	   "mesa" "intel-media-driver" "libva-utils" "egl-wayland"
+	   "mesa-utils" "vulkan-tools"
 	   "xorg-server-xwayland" "wayland-utils" "qtwayland"
 	   "make"
 	   "bluez" "brightnessctl" "playerctl"
@@ -75,6 +76,8 @@
 	   "qemu"
 	   ;; browser
 	   "firefox"
+	   ;; streaming
+	   "moonlight-qt"
 	   ))
     %base-packages))
 
