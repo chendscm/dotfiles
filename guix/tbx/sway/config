@@ -51,7 +51,6 @@ exec swayidle -w \
          timeout 4800 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 
-
 ### Input configuration
 #
 # Example configuration:
@@ -222,7 +221,7 @@ bindsym XF86AudioPrev exec playerctl previous
 #
 input * {
     xkb_layout "us"
-    xkb_options "ctrl:swapcaps"
+    xkb_options "ctrl:swapcaps,sticky_keys"
 }
 # Lock screen
 bindsym $mod+c exec "swaylock -f -c 000000"

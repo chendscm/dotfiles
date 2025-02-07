@@ -34,7 +34,8 @@
                   (comment "Chend")
                   (group "users")
                   (home-directory "/home/chend")
-                  (supplementary-groups '("wheel" "netdev" "audio" "video" "kvm")))
+                  (supplementary-groups '("wheel" "netdev" "audio" "video" "kvm"
+					  "power")))
                 %base-user-accounts))
 
   ;; Packages installed system-wide.  Users can also install packages
@@ -51,6 +52,8 @@
 	   "xorg-server-xwayland" "wayland-utils" "qtwayland"
 	   "make"
 	   "bluez" "brightnessctl" "playerctl"
+	   ;; power
+	   "elogind" "acpid"
 	   ;; alsa
 	   "alsa-utils"
 	   ;; fonts
