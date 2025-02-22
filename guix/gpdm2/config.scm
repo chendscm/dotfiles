@@ -71,8 +71,7 @@
 	   "st" "alacritty"
 	   ;; develop
 	   "python" "python-ipython"
-	   ;"python-numpy"
-	   ;"python-pandas" "python-dateutils" "python-scipy"
+	   "python-scipy"
 	   ;; virtual
 	   "qemu"
 	   "tigervnc-client"
