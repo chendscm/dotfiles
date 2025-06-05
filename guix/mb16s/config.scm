@@ -48,7 +48,9 @@
 	   "intel-microcode"
 	   "xf86-video-intel" "xf86-video-amdgpu"
 	   "xorg-server-xwayland" "wayland-utils" "qtwayland"
-	   "make"
+	   "glibc" "make"
+	   "gtk" "gcc-toolchain" "dbus"
+	   "curl" "tar" "zenity" ;; lazycat
 	   "tlp"
 	   "xrandr"
 	   "bluez" "brightnessctl" "playerctl"
@@ -73,19 +75,17 @@
 	   "st" "alacritty"
 	   ;; develop
 	   "python" "python-ipython"
-	   "python-numpy" "python-pandas" "python-dateutils"
 	   "python-scipy"
 	   ;; virtual
 	   "qemu"
 	   ;; browser
-	   "torbrowser" "google-chrome-stable" "firefox"
+	   "torbrowser" "firefox"
 	   ;; vnc
 	   "tigervnc-client" "freerdp" "xrdp" "remmina"
 	   ;; game
 	   "steam" "font-liberation"
 	   ))
     %base-packages))
-
   
   ;; Below is the list of system services.  To search for available
   ;; services, run 'guix system search KEYWORD' in a terminal.
@@ -93,7 +93,9 @@
    (cons*
     (service openssh-service-type)
     (service cups-service-type)
-    (service bluetooth-service-type)
+    (service bluetooth-service-type
+	     (bluetooth-configuration
+	      (auto-enable? #t)))
     (service docker-service-type)
     (service containerd-service-type)
     (service gnome-desktop-service-type)
