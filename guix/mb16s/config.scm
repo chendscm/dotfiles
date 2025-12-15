@@ -47,6 +47,7 @@
 	   ;; system
 	   "intel-microcode"
 	   "xf86-video-intel" "xf86-video-amdgpu"
+	   "mesa" "mesa-utils"
 	   "xorg-server-xwayland" "wayland-utils" "qtwayland"
 	   "glibc" "make"
 	   "gtk" "gcc-toolchain" "dbus"
@@ -67,7 +68,6 @@
 	   "zip" "unzip"
 	   ;; edit
 	   "emacs" "vim"
-	   ;;"emacs-exwm" "emacs-desktop-environment"
 	   ;; sway
 	   "sway" "swaylock" "swayidle" "swaybg" "waybar"
 	   "wmenu" "polkit" "dconf-editor" "dmenu"
@@ -75,13 +75,14 @@
 	   "st" "alacritty"
 	   ;; develop
 	   "python" "python-ipython"
-	   "python-scipy"
+	   "python-scipy" "python-requests"
 	   ;; virtual
 	   "qemu"
 	   ;; browser
 	   "torbrowser" "firefox"
 	   ;; vnc
 	   "tigervnc-client" "freerdp" "xrdp" "remmina"
+	   "moonlight-qt"
 	   ;; game
 	   "steam" "font-liberation"
 	   ))
@@ -98,11 +99,37 @@
 	      (auto-enable? #t)))
     (service docker-service-type)
     (service containerd-service-type)
+;    (service nftables-service-type
+;	     (nftables-configuration
+;	      (ruleset (plain-file "nftables.conf" "
+;                table inet filter {
+;                  chain input {
+;                    type filter hook input priority 0; policy drop;
+;                    tcp dport { 22, 80, 443 } accept
+;                    udp dport 9993 accept
+;                    icmp type echo-request accept
+;                    ct state established,related accept
+;                  }
+;
+;                  chain forward {
+;                    type filter hook forward priority 0; policy accept;
+;                    iifname \"zt*\" accept  # 放行 ZeroTier 转发
+;                  }
+;
+;                  chain postrouting {
+;                    type nat hook postrouting priority srcnat;
+;                    oifname \"br-lan\" masquerade  # LAN 出口伪装
+;                  }
+;                }"))))
     (service gnome-desktop-service-type)
     (service tlp-service-type
 	     (tlp-configuration
 	      (cpu-scaling-governor-on-ac (list "performance"))
 	      (sched-powersave-on-bat? #t)))
+;    (service zerotier-service-type
+;	     (zerotier-configuration
+;	      (network-id "3efa5cb78aa6d900")
+;	      (auto-join? #t)))
     (service syncthing-service-type
 	     (syncthing-configuration (user "chend")))
     (service screen-locker-service-type

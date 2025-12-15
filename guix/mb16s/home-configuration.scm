@@ -31,7 +31,8 @@
 		      ("INPUT_METHOD" . "fcitx")
 		      ("GLFW_IM_MODULE" . "ibus")
 		      ("GUIX_GTK2_IM_MODULE_FILE" . "/run/current-system/profile/lib/gtk-2.0/2.10.0/immodules-gtk2.cache")
-		      ("GUIX_GTK3_IM_MODULE_FILE" . "/run/current-system/profile/lib/gtk-3.0/3.0.0/immodules-gtk3.cache")))
+		      ("GUIX_GTK3_IM_MODULE_FILE" . "/run/current-system/profile/lib/gtk-3.0/3.0.0/immodules-gtk3.cache")
+		      ))
                    (aliases '(("grep" . "grep --color=auto") ("ll" . "ls -l")
                               ("ls" . "ls -p --color=auto")))
                    (bashrc (list (local-file
