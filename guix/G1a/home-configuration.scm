@@ -8,7 +8,8 @@
              (gnu packages)
              (gnu services)
              (guix gexp)
-             (gnu home services shells))
+             (gnu home services shells)
+	     (gnu home services sway))
 
 (home-environment
   ;; Below is the list of packages that will show up in your
@@ -40,4 +41,12 @@
                                   "bashrc")))
                    (bash-profile (list (local-file
                                         "/home/chend/src/guix-config/.bash_profile"
-                                        "bash_profile"))))))))
+                                        "bash_profile")))))
+;	 (service home-sway-service-type
+;		  (sway-configuration
+;		   (gestures
+;		    '((swipe:3:down . "move to scratchpad")
+;		      (swipe:3:up   . "scratchpad show")))))
+         
+	 
+	 )))

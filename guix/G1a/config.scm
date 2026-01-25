@@ -16,7 +16,7 @@
              (nongnu packages linux)
              (nongnu packages compression)
              (nongnu system linux-initrd))
-(use-service-modules cups desktop networking ssh xorg)
+(use-service-modules cups desktop networking ssh xorg sound)
 
 (operating-system
   (kernel linux)
@@ -62,7 +62,7 @@
 	   "fontconfig" "font-gnu-unifont" "font-wqy-zenhei" "font-wqy-microhei"
 	   ;; fcitx
 	   "fcitx5" "fcitx5-gtk" "fcitx5-qt" "fcitx5-configtool"
-	   "fcitx5-rime" "librime"
+	   "fcitx5-rime" "fcitx5-chinese-addons" "librime"
 	   ;"dconf"
 	   ;; tools
 	   "git" "docker"
@@ -70,23 +70,23 @@
 	   ;; edit
 	   "emacs"
 	   ;; sway
-	   ;"sway" "swaylock" "swayidle" "swaybg" "waybar"
-	   ;"wmenu" "polkit" "dconf-editor" "dmenu"
+	   "sway" "swaylock" "swayidle" "swaybg" "waybar"
+	   "wmenu" "polkit" "dconf-editor" "dmenu"
 	   ;; terminal
-	   ;"st" "alacritty"
+	   "st" "alacritty"
 	   ;; develop
-	   ;"python" "python-ipython"
-	   ;"python-scipy" "python-requests"
+	   "python" "python-ipython"
+	   "python-scipy" "python-requests"
 	   ;; virtual
-	   ;"qemu"
+	   "qemu"
 	   ;; browser
-	   ;"firefox"
+	   "firefox"
 	   ;; vnc
-	   ;"tigervnc-client" "freerdp" "xrdp" "remmina"
-	   ;"moonlight-qt"
+	   "tigervnc-client" "freerdp" "xrdp" "remmina"
+	   "moonlight-qt"
 	   ;; game
-	   ;"steam"
-	   ;"font-liberation"
+	   "steam"
+	   "font-liberation"
 	   ))
     %base-packages))
   
@@ -101,7 +101,7 @@
 	      (auto-enable? #t)))
     (service docker-service-type)
     (service containerd-service-type)
-;    (service gnome-desktop-service-type)
+    (service gnome-desktop-service-type)
     (service tlp-service-type
 	     (tlp-configuration
 	      (cpu-scaling-governor-on-ac (list "performance"))
